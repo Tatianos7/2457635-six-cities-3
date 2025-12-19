@@ -84,7 +84,7 @@ export function OfferScreen ({id, currentOffer, reviews}: OfferScreenProps) {
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                 {reviews ? <OfferReviewList reviews={reviews}/> : ''}
-                {loggedStatus === AuthorizationStatus.Auth ? <OfferFormReview/> : ''}
+                {loggedStatus === AuthorizationStatus.Auth ? <OfferFormReview id={id}/> : ''}
               </section>
             </div>
           </div>
