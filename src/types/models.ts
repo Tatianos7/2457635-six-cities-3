@@ -122,4 +122,10 @@ export type Review = {
   rating: number;
 }
 
+export type SendReview = {
+  offerId: CurrentOfferId;
+  comment: string;
+  rating: number;
+}
+
 export type Reviews = Review[];
