@@ -1,12 +1,9 @@
 import { useAppSelector } from '../../hooks';
 import { changeOffers } from '../../store/reducer';
 import MainEmptyScreen from '../../pages/main-screen/main-empty-screen';
+import { MainPage } from '../../pages/main-screen/main-page';
 
-type PrivateMainScreenRouteProps = {
-  children: JSX.Element;
-}
-
-export default function PrivateMainScreeRoute(props: PrivateMainScreenRouteProps) {
+export const MainScreen = () => {
   const {children} = props;
   const offers = useAppSelector(changeOffers);
 
@@ -14,5 +11,5 @@ export default function PrivateMainScreeRoute(props: PrivateMainScreenRouteProps
     return <MainEmptyScreen />;
   }
 
-  return children;
-}
+  return <MainPage/>;
+};
