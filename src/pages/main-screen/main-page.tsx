@@ -1,15 +1,14 @@
 import Sorting from '../../components/sorting/sorting.tsx';
-import HotelCardList from '../../components/hotel-card/hotel-card-list.tsx';
+import HotelCardList from '../../components/hotel-cards/hotel-cards.tsx';
 import Map from '../../components/map/map.tsx';
-import TownList from '../../components/towns/town-list.tsx';
+import TownList from '../../components/towns/towns.tsx';
 import Header from '../../components/header/header.tsx';
 import Places from '../../components/places/places.tsx';
 
 export function MainPage () {
-
   return (
     <div className="page page--gray page--main" data-testid='main-screen-container'>
-      <Header/>
+      <Header />
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>

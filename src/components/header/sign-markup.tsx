@@ -2,17 +2,17 @@ import { Link } from 'react-router-dom';
 import { AuthorizationStatus } from '../../constants';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
-import { getCurrentAuth } from '../../store/slices/auth-slice/auth-reducer';
+import { getCurrentAuth } from '../../store/slices/auth/selectors';
 
 export default function SignMarkup () {
   const dispatch = useAppDispatch();
   const loggedStatus = useAppSelector(getCurrentAuth);
-  const handleClick = () => {
+  const handleSignOutClick = () => {
     dispatch(logoutAction());
   };
 
   return loggedStatus === AuthorizationStatus.Auth ? (
-    <Link className="header__nav-link" to="/login" onClick={handleClick} data-testid='auth-markup-container'>
+    <Link className="header__nav-link" to="/login" onClick={handleSignOutClick} data-testid='auth-markup-container'>
       <span className="header__signout">{'Sign out'}</span>
     </Link>
   ) : (

@@ -22,7 +22,6 @@ export default function useMap({mapRef, city}: useMapProps) {
           lat: city.location.latitude,
           lng: city.location.longitude,
         },
-
       });
 
       L.tileLayer(
@@ -31,13 +30,9 @@ export default function useMap({mapRef, city}: useMapProps) {
           attribution: MAP_ATTRIBUTION,
         },
       ).addTo(instance);
-
       setMap(instance);
-
       isRenderedRef.current = true;
     }
-
   }, [mapRef, city]);
-
   return map;
 }

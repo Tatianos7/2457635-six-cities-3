@@ -3,7 +3,6 @@ import LoginMarkup from './login-markup';
 import SignMarkup from './sign-markup';
 
 export default function Header () {
-
   return (
     <header className="header" data-testid='header-container'>
       <div className="container">
