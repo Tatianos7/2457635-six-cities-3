@@ -3,8 +3,8 @@ import { Offer } from '../../types/models';
 import { RATING_MULTIPLIER } from '../../constants';
 import { useAppDispatch } from '../../hooks';
 import { addFavoriteOffer } from '../../store/api-actions';
-import { replaceOffer } from '../../store/slices/offers-slice/offers-action';
-import { setFavoriteOffer } from '../../store/slices/favorite-offers-slice/favorites-offers-action';
+import { replaceOffer } from '../../store/slices/offers/actions';
+import { setFavoriteOffer } from '../../store/slices/favorite-offers/actions';
 
 type FavoritesItemProps = {
   offer: Offer;
@@ -13,27 +13,34 @@ type FavoritesItemProps = {
 export default function FavoritesItem ({offer}: FavoritesItemProps) {
   const dispatch = useAppDispatch();
   const {city: {name}, previewImage, price, rating, type, title} = offer;
+
   const ratingValue = rating * RATING_MULTIPLIER;
 
-  const handleClick = () => {
+  const handleFavoriteClick = () => {
     dispatch(addFavoriteOffer(offer));
     dispatch(replaceOffer(offer.id));
     dispatch(setFavoriteOffer(offer));
   };
 
+  const cityMarkup = name ?
+    (
+      <a className="locations__item-link" href="#">
+        <span>{name}</span>
+      </a>
+    )
+    : '';
+
   return (
     <li className="favorites__locations-items" data-testid='favorites-item-container'>
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          <a className="locations__item-link" href="#">
-            <span>{name}</span>
-          </a>
+          {cityMarkup}
         </div>
       </div>
       <div className="favorites__places">
         <article className="favorites__card place-card">
           <div className="favorites__image-wrapper place-card__image-wrapper">
-            <Link to={`/offer/${offer.id}`} state={offer}>
+            <Link to={{pathname: `/offer/${offer.id}`}} state={offer}>
               <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image"/>
             </Link>
           </div>
@@ -43,7 +50,7 @@ export default function FavoritesItem ({offer}: FavoritesItemProps) {
                 <b className="place-card__price-value">&euro;{price}</b>
                 <span className="place-card__price-text">&#47;&nbsp;night</span>
               </div>
-              <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button" onClick={handleClick}>
+              <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button" onClick={handleFavoriteClick}>
                 <svg className="place-card__bookmark-icon" width="18" height="19">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>
@@ -57,9 +64,7 @@ export default function FavoritesItem ({offer}: FavoritesItemProps) {
               </div>
             </div>
             <h2 className="place-card__name">
-              <Link to={`/offer/${offer.id}`} state={offer}>
-                {title}
-              </Link>
+              <Link to={{pathname: `/offer/${offer.id}`}} state={offer}>{title}</Link>
             </h2>
             <p className="place-card__type">{type}</p>
           </div>

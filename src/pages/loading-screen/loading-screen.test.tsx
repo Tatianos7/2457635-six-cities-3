@@ -3,7 +3,6 @@ import LoadingScreen from './loading-screen';
 import { TestIdMarkups } from '../../test/testid-markup';
 import '@testing-library/jest-dom';
 
-
 describe('Component: LoadingScreen', () => {
   it('should render LoadingScreen', () => {
     render(<LoadingScreen />);

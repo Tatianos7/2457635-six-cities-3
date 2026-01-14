@@ -3,18 +3,17 @@ import { SORT_TYPES } from '../../constants';
 import { useAppSelector } from '../../hooks';
 import { SortingTypesMemo } from './sort-types';
 import { useState } from 'react';
-import { getCurrentSort } from '../../store/slices/sorting-slice/sorting-reducer';
+import { getCurrentSort } from '../../store/slices/sorting/selectors';
 
 export default function Sorting() {
   const currentSort = useAppSelector(getCurrentSort);
   const [isOpened, setIsOpened] = useState(false);
-  const handleClick = () => {
+  const handleSortingChange = () => {
     setIsOpened((prevState) => !prevState);
   };
 
   return (
-
-    <form className="places__sorting" action="#" method="get" onClick={handleClick} data-testid='sorting-container'>
+    <form className="places__sorting" action="#" method="get" onClick={handleSortingChange} data-testid='sorting-container'>
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>
         {currentSort}
