@@ -20,5 +20,5 @@ export default function LoginMarkup () {
         <span className="header__favorite-count">{currentFavoriteOffers.length}</span>
       </Link>
     )
-    : '';
+    : null;
 }
